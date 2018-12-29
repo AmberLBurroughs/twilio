@@ -1,7 +1,7 @@
 require("dotenv").config();
 const keys          = require("../keys.js");
-const express 			= require('express');
-const router  			= express.Router();
+const express       = require('express');
+const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 speakWithAmber  => {
@@ -67,10 +67,12 @@ router.post('/gather', (request, response) => {
       case '1':
         return speakWithAmber();
       case '2':
-        twiml.say('Please leave a message at the beep.');
+        twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
         twiml.record({
           transcribe: true,
-          transcribeCallback: '/voice/handle_transcribe'
+          transcribeCallback: '/voice/handle_transcribe',
+          maxLength: 20,
+          finishOnKey: '*'
         });
         twiml.say('I did not receive a recording');
       break;
@@ -95,6 +97,7 @@ router.post('/gather', (request, response) => {
 
 router.post('/handle_transcribe', (request, response) => {
   console.log("recording transcribe", request.body);
+  response.status(200).send('Done')
 });
 
 module.exports = router;
