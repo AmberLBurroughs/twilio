@@ -11,7 +11,7 @@ router.post('/', (request, response) => {
     numDigits: 1,
     action: '/voice/gather',
   });
-  gather.say({ voice: 'woman', }, 'Hi, thank you for calling about Amber\'s hatch application. To speak with Amber, press 1. To leave a voice message, press 2. To receive a link to Amber\'s schedule, press 3. To receive a random compliment, press 4.');
+  gather.say({ voice: 'woman'}, 'Hi, thank you for calling about Amber\'s hatch application. To speak with Amber, press 1. To leave a voice message, press 2. To receive a link to Amber\'s schedule, press 3. To receive a random compliment, press 4.');
 
   // If the user doesn't enter input, loop
   twiml.redirect('/voice');
