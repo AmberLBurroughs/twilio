@@ -41,14 +41,10 @@ router.post('/', (request, response) => {
     numDigits: 1,
     action: '/voice/gather',
   });
-  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.'+
-    '\n' 
-    'To speak with Amber, press 1'+
-    '\n' 
-    'To leave a voice message, press 2'+
-    '\n' 
-    'To receive a link to Amber\'s schedule, press 3'+
-    '\n' 
+  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.\n'+
+    'To speak with Amber, press 1 \n'+
+    'To leave a voice message, press 2 \n'+
+    'To receive a link to Amber\'s schedule, press 3 \n'+
     'To receive a random compliment, press 4.');
 
   // If the user doesn't enter input, loop
