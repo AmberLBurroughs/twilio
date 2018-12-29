@@ -67,7 +67,7 @@ router.post('/gather', (request, response) => {
       break;
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
-        twiml.record({finishOnKey: '*'});
+        response.record();
         // twiml.record({
         //   transcribe: true,
         //   transcribeCallback: '/voice/handle_transcribe',
@@ -79,8 +79,7 @@ router.post('/gather', (request, response) => {
         // twiml.status(200)
         //twiml.hangup();
 
-    // Render the response as XML in reply to the webhook request
-        twiml.setStatusCode(200)
+   
 
   // Send the response
       break;
@@ -94,19 +93,12 @@ router.post('/gather', (request, response) => {
         break;
     }
 
-    
-    // Render the response as XML in reply to the webhook request
-    twiml.setStatusCode(200)
-    response.type('text/xml');
-    response.send(twiml.toString());
+  
   } else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
   }
 
-  // Render the response as XML in reply to the webhook request
-  response.type('text/xml');
-  response.send(twiml.toString());
 });
 
 router.post('/handle_transcribe', (request, response) => {
