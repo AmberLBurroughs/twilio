@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need installed before running this application.
 
 * [NODE](https://nodejs.org/en/download/)
-* [NPM](https://docs.npmjs.com/cli/install) - Yarn will also work
+* [NPM](https://docs.npmjs.com/cli/install)
 
 You will also need to have a Twilio account set up.
 * [Twilio](https://www.twilio.com/try-twilio)
