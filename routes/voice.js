@@ -81,8 +81,7 @@ router.post('/gather', (request, response) => {
 
   // Send the response
         response
-          .status(200)
-          .end();
+          .status(200);
       break;
       case '3':
         return getSMSSchedule(callFrom);
