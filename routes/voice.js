@@ -5,9 +5,7 @@ const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 speakWithAmber = (twiml) => {
-  twiml.say({ voice: 'woman'}, 'You selected speaks with Amber!');
-  twiml.dial('14154299564');
-  twiml.say({ voice: 'woman'}, 'Goodbye!');
+  
 }
 
 leaveVoiceMessage = (twiml) => {
@@ -64,7 +62,10 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        return speakWithAmber(twiml);
+        twiml.say({ voice: 'woman'}, 'You selected speaks with Amber!');
+        twiml.dial('14154299564');
+        twiml.say({ voice: 'woman'}, 'Goodbye!');
+      break;
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
         twiml.record({
