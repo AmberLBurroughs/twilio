@@ -5,12 +5,9 @@ const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 speakWithAmber = (twiml) => {
-  
 }
 
-leaveVoiceMessage = (twiml) => {
-  
-  
+leaveVoiceMessage = (twiml) => {  
 }
 
 getSMSSchedule = (callFrom) => {
@@ -38,6 +35,7 @@ router.post('/', (request, response) => {
     numDigits: 1,
     action: '/voice/gather',
   });
+  
   gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.\n'+
     'To speak with Amber, press 1 \n'+
     'To leave a voice message, press 2 \n'+
@@ -82,10 +80,12 @@ router.post('/gather', (request, response) => {
         twiml.redirect('/voice');
         break;
     }
-  } else {
+  } 
+  else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
   }
+
   // Render the response as XML in reply to the webhook request
   twiml.hangup();
   response.type('text/xml');
