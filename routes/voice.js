@@ -66,22 +66,12 @@ router.post('/gather', (request, response) => {
         twiml.dial(keys.twilio.contact);
       break;
       case '2':
-        twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
-        //twiml.record();
+        twiml.say({ voice: 'woman'},'Please leave a message at the beep.\nPress the star key when finished.');
          twiml.record({
-        //   transcribe: true,
            action: '/voice/handle_transcribe',
-        //   maxLength: 20,
            finishOnKey: '*'
         });
-        // twiml.say('I did not receive a recording');
-        // twiml.hangup();
-        // twiml.status(200)
-        //twiml.hangup();
-
-   
-
-  // Send the response
+        twiml.say('I did not receive a recording');
       break;
       case '3':
         return getSMSSchedule(callFrom);
@@ -92,30 +82,23 @@ router.post('/gather', (request, response) => {
         twiml.redirect('/voice');
         break;
     }
-
-  
   } else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
   }
-
   // Render the response as XML in reply to the webhook request
-  twiml.hangup()
+  twiml.hangup();
+  response.type('text/xml');
   response.send(twiml.toString());
 });
 
 router.post('/handle_transcribe', (request, response) => {
-  console.log("recording transcribe", request.body);
-  const twiml = new VoiceResponse()
-  const recordingUrl = request.body.RecordingUrl
-
-  twiml.say('Thanks for howling... take a listen to what you howled.')
-  twiml.play(recordingUrl)
-  twiml.say('Goodbye.')
-  response.send(twiml.toString())
+  const twiml = new VoiceResponse();
+  // const recordingUrl = request.body.RecordingUrl;
+  // twiml.play(recordingUrl);
+  twiml.say({ voice: 'woman'},'Thank you, Goodbye.');
+  response.type('text/xml');
+  response.send(twiml.toString());
 });
 
 module.exports = router;
-
-
-
