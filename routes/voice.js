@@ -6,7 +6,7 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 speakWithAmber = (twiml) => {
   twiml.say({ voice: 'woman'}, 'You selected speaks with Amber!');
-  twiml.dial(keys.twilio.contact);
+  twiml.dial('14154299564');
   twiml.say({ voice: 'woman'}, 'Goodbye!');
 }
 
