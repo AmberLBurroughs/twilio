@@ -62,9 +62,8 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        twiml.say({ voice: 'woman'}, 'You selected speaks with Amber!');
-        twiml.dial('14154299564');
-        twiml.say({ voice: 'woman'}, 'Goodbye!');
+        twiml.say({ voice: 'woman'}, 'You selected speaks with Amber! One moment while I patch you through.');
+        twiml.dial(keys.twilio.contact);
       break;
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
