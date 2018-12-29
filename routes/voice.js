@@ -62,20 +62,21 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        twiml.say({ voice: 'woman'}, 'You selected speaks with Amber! One moment while I patch you through.');
+        twiml.say({ voice: 'woman'}, 'You have selected to chat with Amber! One moment while I patch you through.');
         twiml.dial(keys.twilio.contact);
       break;
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
-        twiml.record({
-          transcribe: true,
-          transcribeCallback: '/voice/handle_transcribe',
-          maxLength: 20,
-          finishOnKey: '*'
-        });
-        twiml.say('I did not receive a recording');
-        twiml.hangup()
-        twiml.status(200)
+        twiml.record({finishOnKey: '*'});
+        // twiml.record({
+        //   transcribe: true,
+        //   transcribeCallback: '/voice/handle_transcribe',
+        //   maxLength: 20,
+        //   finishOnKey: '*'
+        // });
+        // twiml.say('I did not receive a recording');
+        twiml.hangup();
+        // twiml.status(200)
       break;
       case '3':
         return getSMSSchedule(callFrom);
