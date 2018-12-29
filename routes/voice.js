@@ -95,6 +95,7 @@ router.post('/gather', (request, response) => {
 
 router.post('/handle_transcribe', (request, response) => {
   console.log("recording transcribe", request.body);
+  response.status(200).send('Done')
 });
 
 module.exports = router;
