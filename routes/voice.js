@@ -67,11 +67,10 @@ router.post('/gather', (request, response) => {
       case '1':
         return speakWithAmber();
       case '2':
-        twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
+        twiml.say('Please leave a message at the beep.');
         twiml.record({
           transcribe: true,
-          transcribeCallback: '/voice/handle_transcribe',
-          finishOnKey: '*'
+          transcribeCallback: '/voice/handle_transcribe'
         });
         twiml.say('I did not receive a recording');
       break;
