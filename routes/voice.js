@@ -67,7 +67,7 @@ router.post('/gather', (request, response) => {
       break;
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
-        response.record();
+        twiml.record();
         // twiml.record({
         //   transcribe: true,
         //   transcribeCallback: '/voice/handle_transcribe',
