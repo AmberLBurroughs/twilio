@@ -77,6 +77,12 @@ router.post('/gather', (request, response) => {
         // twiml.say('I did not receive a recording');
         // twiml.hangup();
         // twiml.status(200)
+        twiml.hangup();
+
+  // Send the response
+        res
+          .status(200)
+          .end();
       break;
       case '3':
         return getSMSSchedule(callFrom);
