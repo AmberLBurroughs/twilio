@@ -77,11 +77,9 @@ router.post('/gather', (request, response) => {
         // twiml.say('I did not receive a recording');
         // twiml.hangup();
         // twiml.status(200)
-        twiml.hangup();
+        
 
   // Send the response
-        response
-          .status(200);
       break;
       case '3':
         return getSMSSchedule(callFrom);
@@ -92,6 +90,12 @@ router.post('/gather', (request, response) => {
         twiml.redirect('/voice');
         break;
     }
+
+    twiml.hangup();
+
+    // Render the response as XML in reply to the webhook request
+    response.type('text/xml');
+    response.send(twiml.toString());
   } else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
