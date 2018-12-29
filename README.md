@@ -11,14 +11,14 @@ Instead of just giving out my contact number, I used Twilio to create creative a
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+### ✅ Prerequisites
 
 What things you need installed before running this application.
 
 * [NODE](https://nodejs.org/en/download/)
 * [NPM](https://docs.npmjs.com/cli/install)
 
-You will also need to have a Twilio account set up.
+🌟 You will also need to have a Twilio account set up.
 * [Twilio](https://www.twilio.com/try-twilio)
 
 <!-- ### Installing
@@ -43,7 +43,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 Add additional notes about how to deploy this on a live system -->
 
-## Built With
+## 🛠️ Built With
 
 * [Express](https://www.npmjs.com/package/express) - Node web framework
 * [Twilio](https://www.twilio.com/docs/) - Cmmunication API
