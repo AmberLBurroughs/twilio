@@ -12,15 +12,8 @@ speakWithAmber  => {
 }
 
 leaveVoiceMessage => {
-  const twiml = new VoiceResponse();
-  twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
-  twiml.record({
-    transcribe: true,
-    transcribeCallback: '/voice/handle_transcribe',
-    maxLength: 20,
-    finishOnKey: '*'
-  });
-  twiml.say('I did not receive a recording');
+  
+  
 }
 
 getSMSSchedule = (callFrom) => {
@@ -48,10 +41,14 @@ router.post('/', (request, response) => {
     numDigits: 1,
     action: '/voice/gather',
   });
-  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.'+ 
-    'To speak with Amber, press 1.'+
-    'To leave a voice message, press 2.'+
-    'To receive a link to Amber\'s schedule, press 3.'+
+  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.'+
+    '\n' 
+    'To speak with Amber, press 1'+
+    '\n' 
+    'To leave a voice message, press 2'+
+    '\n' 
+    'To receive a link to Amber\'s schedule, press 3'+
+    '\n' 
     'To receive a random compliment, press 4.');
 
   // If the user doesn't enter input, loop
@@ -62,8 +59,11 @@ router.post('/', (request, response) => {
 });
 
 router.post('/gather', (request, response) => {
-	let callFrom = request.body.From;
+  let callFrom = request.body.From;
   callFrom     = callFrom.replace(/[^0-9]/g, "");
+
+  // Use the Twilio Node.js SDK to build an XML response
+  const twiml  = new VoiceResponse();
   
   // If the user entered digits, process their request
   if (request.body.Digits) {
@@ -71,7 +71,15 @@ router.post('/gather', (request, response) => {
       case '1':
         return speakWithAmber();
       case '2':
-        return leaveVoiceMessage();
+        twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
+        twiml.record({
+          transcribe: true,
+          transcribeCallback: '/voice/handle_transcribe',
+          maxLength: 20,
+          finishOnKey: '*'
+        });
+        twiml.say('I did not receive a recording');
+      break;
       case '3':
         return getSMSSchedule(callFrom);
       case '4':
