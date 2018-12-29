@@ -80,7 +80,7 @@ router.post('/gather', (request, response) => {
         twiml.hangup();
 
   // Send the response
-        res
+        response
           .status(200)
           .end();
       break;
