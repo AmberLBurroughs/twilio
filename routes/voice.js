@@ -13,27 +13,33 @@ speakWithAmber  => {
 
 leaveVoiceMessage => {
   const twiml = new VoiceResponse();
-  twiml.say({ voice: 'woman'}, 'You want to leave a voice message!');
-  twiml.say({ voice: 'woman'}, 'Goodbye!');
+  twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
+  twiml.record({
+    transcribe: true,
+    transcribeCallback: '/voice/handle_transcribe',
+    maxLength: 20,
+    finishOnKey: '*'
+  });
+  twiml.say('I did not receive a recording');
 }
 
-getSchedule => {
+getSMSSchedule = (callFrom) => {
   const twiml = new VoiceResponse();
   twiml.say({ voice: 'woman'}, 
     'Amber\'s schedule will be messaged to you momentarily.' + 
     'Goodbye!' );
+  twiml.redirect(`/sms/schedule/${callFrom}`);
   twiml.hangup();
 }
 
-getCompliment => {
+getSMSCompliment = (callFrom) => {
   const twiml = new VoiceResponse();
   twiml.say({ voice: 'woman'}, 
     'A random compliment will be messaged to you momentarily.' + 
     'Goodbye!');
+  twiml.redirect(`/sms/compliment/${callFrom}`);
   twiml.hangup();
 }
-
-
 
 router.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
@@ -56,10 +62,8 @@ router.post('/', (request, response) => {
 });
 
 router.post('/gather', (request, response) => {
-
-	const callFrom = request.body.From;
-
-  // Use the Twilio Node.js SDK to build an XML response
+	let callFrom = request.body.From;
+  callFrom     = callFrom.replace(/[^0-9]/g, "");
   
   // If the user entered digits, process their request
   if (request.body.Digits) {
@@ -69,11 +73,9 @@ router.post('/gather', (request, response) => {
       case '2':
         return leaveVoiceMessage();
       case '3':
-        twiml.say({ voice: 'woman'}, 'Send you Amber\'s schedule!');
-        break;
+        return getSMSSchedule(callFrom);
       case '4':
-        twiml.say({ voice: 'woman'}, 'Have a happy New Year!');
-        break;
+        return getSMSCompliment(callFrom);
       default:
         twiml.say({ voice: 'woman'}, "Sorry, I don't understand that choice.").pause();
         twiml.redirect('/voice');
@@ -87,6 +89,10 @@ router.post('/gather', (request, response) => {
   // Render the response as XML in reply to the webhook request
   response.type('text/xml');
   response.send(twiml.toString());
+});
+
+router.post('/handle_transcribe', (request, response) => {
+  console.log("recording transcribe", request.body);
 });
 
 module.exports = router;
