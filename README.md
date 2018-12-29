@@ -1,6 +1,7 @@
 # 📱 Twilio Interactive Voice Response 
 
-Instead of just giving out my contact number, I used Twilio to create creative and interactive way to get in touch with me. When the twilio webhook is hit, the caller is prompted with 4 options to chose from: 
+Instead of just giving out my contact number, I used Twilio to create creative and interactive way to get in touch with me. When the twilio webhook is hit, the caller is prompted with 4 options to chose from:
+
 	 1. Speak with me
 	 2. Leave a voicemail
 	 3. Receive a link to my schedule through text
