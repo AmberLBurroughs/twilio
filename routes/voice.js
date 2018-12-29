@@ -1,33 +1,16 @@
 require("dotenv").config();
-const keys          = require("../keys.js");
+const keys          = require("../utils/keys.js");
+const helpers       = require("../utils/voice-helpers.js");
 const express       = require('express');
 const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-speakWithAmber = (twiml) => {
-}
-
-leaveVoiceMessage = (twiml) => {  
-}
-
-getSMSSchedule = (callFrom) => {
-  const twiml = new VoiceResponse();
-  twiml.say({ voice: 'woman'}, 
-    'Amber\'s schedule will be messaged to you momentarily.' + 
-    'Goodbye!' );
-  twiml.redirect(`/sms/schedule/${callFrom}`);
-  twiml.hangup();
-}
-
-getSMSCompliment = (callFrom) => {
-  const twiml = new VoiceResponse();
-  twiml.say({ voice: 'woman'}, 
-    'A random compliment will be messaged to you momentarily.' + 
-    'Goodbye!');
-  twiml.redirect(`/sms/compliment/${callFrom}`);
-  twiml.hangup();
-}
-
+// Voice Routes ======================================================
+console.log("helper", helpers);
+/* 
+  /voice
+  incoming calls
+*/
 router.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   const twiml  = new VoiceResponse();
@@ -35,7 +18,7 @@ router.post('/', (request, response) => {
     numDigits: 1,
     action: '/voice/gather',
   });
-  
+
   gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.\n'+
     'To speak with Amber, press 1 \n'+
     'To leave a voice message, press 2 \n'+
@@ -49,6 +32,10 @@ router.post('/', (request, response) => {
   response.send(twiml.toString());
 });
 
+/*
+  /voice/gather
+  decision making after a user dials a digit
+*/
 router.post('/gather', (request, response) => {
   let callFrom = request.body.From;
   callFrom     = callFrom.replace(/[^0-9]/g, "");
@@ -60,21 +47,14 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        twiml.say({ voice: 'woman'}, 'You have selected to chat with Amber! One moment while I patch you through.');
-        twiml.dial(keys.twilio.contact);
-      break;
+        return helpers.voiceHelpers.speakWithAmber(twiml);
       case '2':
-        twiml.say({ voice: 'woman'},'Please leave a message at the beep.\nPress the star key when finished.');
-         twiml.record({
-           action: '/voice/handle_transcribe',
-           finishOnKey: '*'
-        });
-        twiml.say('I did not receive a recording');
+        return helpers.voiceHelpers.leaveVoiceMessage(twiml);
       break;
       case '3':
-        return getSMSSchedule(callFrom);
+        return helpers.voiceHelpers.getSMSSchedule(twiml, callFrom);
       case '4':
-        return getSMSCompliment(callFrom);
+        return helpers.voiceHelpers.getSMSCompliment(twiml, callFrom);
       default:
         twiml.say({ voice: 'woman'}, "Sorry, I don't understand that choice.").pause();
         twiml.redirect('/voice');
@@ -92,6 +72,10 @@ router.post('/gather', (request, response) => {
   response.send(twiml.toString());
 });
 
+/*
+  /voice/handle_transcribe
+  after creating a voice recording
+*/
 router.post('/handle_transcribe', (request, response) => {
   const twiml = new VoiceResponse();
   // const recordingUrl = request.body.RecordingUrl;
