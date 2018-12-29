@@ -71,7 +71,6 @@ router.post('/gather', (request, response) => {
         twiml.record({
           transcribe: true,
           transcribeCallback: '/voice/handle_transcribe',
-          maxLength: 20,
           finishOnKey: '*'
         });
         twiml.say('I did not receive a recording');
