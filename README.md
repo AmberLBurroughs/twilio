@@ -1,6 +1,7 @@
 # 📱 Twilio Interactive Voice Response 
 
-Instead of just giving out my contact number, I used Twilio to create creative and interactive way to get in touch with me. When the twilio webhook is hit, the caller is prompted with 4 options to chose from: 
+Instead of just giving out my contact number, I used Twilio to create creative and interactive way to get in touch with me. When the twilio webhook is hit, the caller is prompted with 4 options to chose from:
+
 	 1. Speak with me
 	 2. Leave a voicemail
 	 3. Receive a link to my schedule through text
@@ -10,14 +11,14 @@ Instead of just giving out my contact number, I used Twilio to create creative a
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+### ✅ Prerequisites
 
 What things you need installed before running this application.
 
 * [NODE](https://nodejs.org/en/download/)
 * [NPM](https://docs.npmjs.com/cli/install)
 
-You will also need to have a Twilio account set up.
+🌟 You will also need to have a Twilio account set up.
 * [Twilio](https://www.twilio.com/try-twilio)
 
 <!-- ### Installing
@@ -42,7 +43,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 Add additional notes about how to deploy this on a live system -->
 
-## Built With
+## 🛠️ Built With
 
 * [Express](https://www.npmjs.com/package/express) - Node web framework
 * [Twilio](https://www.twilio.com/docs/) - Cmmunication API
