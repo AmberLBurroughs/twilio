@@ -77,7 +77,10 @@ router.post('/gather', (request, response) => {
         // twiml.say('I did not receive a recording');
         // twiml.hangup();
         // twiml.status(200)
-        
+        //twiml.hangup();
+
+    // Render the response as XML in reply to the webhook request
+        twiml.setStatusCode(200)
 
   // Send the response
       break;
@@ -91,9 +94,9 @@ router.post('/gather', (request, response) => {
         break;
     }
 
-    twiml.hangup();
-
+    
     // Render the response as XML in reply to the webhook request
+    twiml.setStatusCode(200)
     response.type('text/xml');
     response.send(twiml.toString());
   } else {
