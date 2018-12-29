@@ -1,10 +1,10 @@
 # 📱 Twilio Interactive Voice Response 
 
 Instead of just giving out my contact number, I used Twilio to create creative and interactive way to get in touch with me. When the twilio webhook is hit, the caller is prompted with 4 options to chose from: 
-	 * [Speak with me]
-	 * [Leave a voicemail]
-	 * [Receive a link to my schedule through text]
-	 * [Receive a random compliment through text]
+	 1. Speak with me
+	 2. Leave a voicemail
+	 3. Receive a link to my schedule through text
+	 4. Receive a random compliment through text
 
 ## Getting Started
 
