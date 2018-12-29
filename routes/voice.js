@@ -9,20 +9,10 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 // const client        = require('twilio')(accountSid, authToken);
 
 
-
-
-/* programable SMS. */
-router.get('/message', function(req, res, next) {
-  //res.send('respond with a resource');
-});
-
-/* programable voice. */
-router.get('/voice', function(req, res, next) {
-  //res.send('respond with a resource');
-});
-
-router.post('/voice', (request, response) => {
+router.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
+  console.log("caller data", request.body);
+
   const twiml = new VoiceResponse();
   twiml.say({ voice: 'Amber' }, 'hello world!');
 
