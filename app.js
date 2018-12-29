@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger 			 = require('morgan');
 const indexRouter  = require('./routes/index');
 const voiceRouter  = require('./routes/voice');
-const voiceRouter  = require('./routes/sms');
+const smsRouter  = require('./routes/sms');
 
 const app = express();
 
