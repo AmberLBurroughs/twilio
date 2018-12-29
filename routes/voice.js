@@ -99,6 +99,9 @@ router.post('/gather', (request, response) => {
     twiml.redirect('/voice');
   }
 
+  // Render the response as XML in reply to the webhook request
+  response.type('text/xml');
+  response.send(twiml.toString());
 });
 
 router.post('/handle_transcribe', (request, response) => {
