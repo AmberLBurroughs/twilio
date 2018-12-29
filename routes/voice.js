@@ -4,14 +4,13 @@ const express       = require('express');
 const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-speakWithAmber  => {
-  const twiml = new VoiceResponse();
+speakWithAmber = (twiml) => {
   twiml.say({ voice: 'woman'}, 'You selected speaks with Amber!');
   twiml.dial(keys.twilio.contact);
   twiml.say({ voice: 'woman'}, 'Goodbye!');
 }
 
-leaveVoiceMessage => {
+leaveVoiceMessage = (twiml) => {
   
   
 }
@@ -65,7 +64,7 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        return speakWithAmber();
+        return speakWithAmber(twiml);
       case '2':
         twiml.say('Please leave a message at the beep.\nPress the star key when finished.');
         twiml.record({
@@ -75,6 +74,8 @@ router.post('/gather', (request, response) => {
           finishOnKey: '*'
         });
         twiml.say('I did not receive a recording');
+        twiml.hangup()
+        twiml.status(200)
       break;
       case '3':
         return getSMSSchedule(callFrom);
