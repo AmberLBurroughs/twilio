@@ -47,17 +47,13 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        helpers.voiceHelpers.speakWithAmber(twiml);
-      break;
+        return helpers.voiceHelpers.speakWithAmber(twiml);
       case '2':
-        helpers.voiceHelpers.leaveVoiceMessage(twiml);
-      break;
+        return helpers.voiceHelpers.leaveVoiceMessage(twiml);
       case '3':
-        helpers.voiceHelpers.getSMSSchedule(twiml, callFrom);
-      break;
+        return helpers.voiceHelpers.getSMSSchedule(twiml, callFrom);
       case '4':
-        helpers.voiceHelpers.getSMSCompliment(twiml, callFrom);
-      break;
+        return helpers.voiceHelpers.getSMSCompliment(twiml, callFrom);
       default:
         twiml.say({ voice: 'woman'}, "Sorry, I don't understand that choice.").pause();
         twiml.redirect('/voice');
