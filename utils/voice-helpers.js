@@ -14,19 +14,15 @@ exports.voiceHelpers = {
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
   	axios.post(`/sms/schedule/${callFrom}`)
-  	.then(response => console.log(response))
+  	.then(response => twiml.hangup())
 	  .catch(error => console.log(error));
-
-  	twiml.hangup();
 	},
 	getSMSCompliment: (twiml, callFrom) => {
 		twiml.say({ voice: 'woman'},
     'A random compliment will be messaged to you momentarily.' +
     'Goodbye!');
 	  axios.post(`/sms/compliment/${callFrom}`)
-	  .then(response => console.log(response))
+	  .then(response => twiml.hangup())
 	  .catch(error => console.log(error));
-
-	  twiml.hangup();
 	}
 }
