@@ -36,7 +36,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
   /sms/compliment/number
   recieve a random compliment through text
 */
-router.post('/compliment/:number/id', (req, res, next) => {
+router.post('/compliment/:number/:id', (req, res, next) => {
 	const toTxt            = req.params.number;
   const currentCall      = req.params.id;
   const randomCompliment = nicejob();
