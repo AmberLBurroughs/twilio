@@ -41,6 +41,7 @@ router.post('/compliment/:number/id', (req, res, next) => {
   const currentCall      = req.params.id;
   const randomCompliment = nicejob();
 
+console.log(currentCall)
   client.messages
   .create({
   	body: `Amber says "${randomCompliment}" 🙃`,
