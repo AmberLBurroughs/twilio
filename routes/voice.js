@@ -19,11 +19,11 @@ router.post('/', (request, response) => {
     action: '/voice/gather',
   });
 
-  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, she will be very excited to hear from you.\n'+
-    'To speak with Amber, press 1 \n'+
-    'To leave a voice message, press 2 \n'+
-    'To receive a link to Amber\'s calendar, press 3 \n'+
-    'To receive a random compliment, press 4.');
+  gather.say({ voice: 'woman'}, 'Hi there! You must be calling about Amber\'s Hatch application, \n she will be very excited to hear from you.\n'+
+    '\n To speak with Amber, \n press 1 \n'+
+    '\n To leave a voice message, \n press 2 \n'+
+    '\n To receive a link to Amber\'s calendar, \n press 3 \n'+
+    '\n To receive a random compliment, \n press 4.');
 
   // If the user doesn't enter input, loop
   twiml.redirect('/voice');
@@ -89,7 +89,7 @@ router.post('/gather', (request, response) => {
 */
 router.post('/handle_recording', (request, response) => {
   const twiml = new VoiceResponse();
-  twiml.say({ voice: 'woman'},'Thank you, Goodbye.');
+  twiml.say({ voice: 'woman'},'Thank you, \n Goodbye.');
 
   response.type('text/xml');
   response.send(twiml.toString());
