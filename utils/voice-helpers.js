@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 exports.voiceHelpers = {
 	speakWithAmber: (twiml, keys) =>{
 		console.log('test speakWithAmber')
@@ -11,14 +13,20 @@ exports.voiceHelpers = {
 		twiml.say({ voice: 'woman'},
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
-    twiml.hangup();
-  	twiml.redirect(`/sms/schedule/${callFrom}`);
+  	axios.get(`/sms/schedule/${callFrom}`)
+  	.then(response => console.log(response))
+	  .catch(error => console.log(error));
+
+  	twiml.hangup();
 	},
 	getSMSCompliment: (twiml, callFrom) => {
 		twiml.say({ voice: 'woman'},
     'A random compliment will be messaged to you momentarily.' +
     'Goodbye!');
-    twiml.hangup();
-	  twiml.redirect(`/sms/compliment/${callFrom}`);
+	  axios.get(`/sms/compliment/${callFrom}`)
+	  .then(response => console.log(response))
+	  .catch(error => console.log(error));
+
+	  twiml.hangup();
 	}
 }
