@@ -9,7 +9,7 @@ exports.voiceHelpers = {
 	},
 	getSMSSchedule: (twiml, callFrom, callID) => {
 		twiml.say({ voice: 'woman'},
-    'Amber\'s schedule will be messaged to you momentarily.' +
+    'Amber\'s calendar will be messaged to you momentarily.' +
     'Goodbye!' );
   	twiml.redirect(`/sms/schedule/${callFrom}/${callID}`);
 	},

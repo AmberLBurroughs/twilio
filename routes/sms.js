@@ -27,7 +27,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
 
   client.messages
   .create({
-   	body: `Thank you for calling! Here is a link to Amber's schedule : ${schedule}`,
+   	body: `Thank you for calling! Here is a link to Amber's calendar : ${schedule}`,
      from: keys.twilio.contact,
      to: toTxt
   })
