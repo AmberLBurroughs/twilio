@@ -13,7 +13,7 @@ exports.voiceHelpers = {
 		twiml.say({ voice: 'woman'},
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
-  	axios.get(`/sms/schedule/${callFrom}`)
+  	axios.post(`/sms/schedule/${callFrom}`)
   	.then(response => console.log(response))
 	  .catch(error => console.log(error));
 
@@ -23,7 +23,7 @@ exports.voiceHelpers = {
 		twiml.say({ voice: 'woman'},
     'A random compliment will be messaged to you momentarily.' +
     'Goodbye!');
-	  axios.get(`/sms/compliment/${callFrom}`)
+	  axios.post(`/sms/compliment/${callFrom}`)
 	  .then(response => console.log(response))
 	  .catch(error => console.log(error));
 
