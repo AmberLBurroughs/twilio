@@ -12,13 +12,11 @@ exports.voiceHelpers = {
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
   	twiml.redirect(`/sms/schedule/${callFrom}/${callID}`);
-
 	},
 	getSMSCompliment: (twiml, callFrom, callID) => {
 		twiml.say({ voice: 'woman'},
-    'A random compliment will be messaged to you momentarily.' +
+    'A randomly generated compliment will be messaged to you momentarily.' +
     'Goodbye!');
 	  twiml.redirect(`/sms/compliment/${callFrom}/${callID}`);
-
 	}
 }

@@ -20,6 +20,13 @@ router.post('/schedule/:number/:id', (req, res, next) => {
   const currentCall = req.params.id;
 	const schedule    = keys.personal.schedule;
 
+  client.calls(currentCall)
+  .update({
+    status: 'completed',
+  })
+  .then(call=>console.log(call.direction))
+  .catch(err=>console.log(err));
+
   client.messages
   .create({
   // 	body: `Thank you for calling! Here is a link to Amber's schedule 📅: ${schedule}`,
