@@ -3,7 +3,10 @@ const express = require('express');
 const router  = express.Router();
 const nicejob = require('nicejob');
 const keys    = require("../utils/keys.js");
-const client = require('twilio')(keys.twilio.accountSid, keys.twilio.authToken);
+
+const accountSid = keys.twilio.accountSid;
+const authToken  = keys.twilio.authToken;
+const client     = require('twilio')(accountSid, authToken);
 
 // SMS Routes ======================================================
 
