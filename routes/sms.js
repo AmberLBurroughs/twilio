@@ -41,22 +41,21 @@ router.post('/compliment/:number/id', (req, res, next) => {
   const currentCall      = req.params.id;
   const randomCompliment = nicejob();
 
-console.log(currentCall)
+  client.calls(currentCall)
+  .update({
+    status: 'completed',
+  })
+  .then(call=>console.log(call.direction))
+  .catch(err=>console.log(err));
+
   client.messages
   .create({
   	body: `Amber says "${randomCompliment}" 🙃`,
     from: keys.twilio.contact,
     to: toTxt
   })
-  .then(message => {
-    client.calls(currentCall)
-    .update({
-      status: 'completed',
-    }, (err, call) => {
-      console.log(call.direction);
-    });
-    res.status(200)
-  })
+  .then(message =>res.status(200))
+  .catch(err=>console.log(err))
   .done();
 });
 
