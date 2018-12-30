@@ -1,5 +1,5 @@
 exports.voiceHelpers = {
-	speakWithAmber: (twiml) =>{
+	speakWithAmber: (twiml, keys) =>{
 		twiml.say({ voice: 'woman'}, 'You have selected to chat with Amber! One moment while I patch you through.');
     twiml.dial(keys.personal.contact);
 	},

@@ -47,7 +47,7 @@ router.post('/gather', (request, response) => {
   if (request.body.Digits) {
     switch (request.body.Digits) {
       case '1':
-        return helpers.voiceHelpers.speakWithAmber(twiml);
+        return helpers.voiceHelpers.speakWithAmber(twiml, keys);
       case '2':
         return helpers.voiceHelpers.leaveVoiceMessage(twiml);
       case '3':
