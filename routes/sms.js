@@ -19,14 +19,14 @@ router.post('/schedule/:number', function(req, res, next) {
 	const schedule = keys.personal.schedule;
   console.log(schedule, toTxt)
 
-  // client.messages 
-  // .create({ 
+  client.messages
+  .create({
   // 	body: `Thank you for calling! Here is a link to Amber's schedule 📅: ${schedule}`,
-  //   from: keys.twilio.contact,       
+  //   from: keys.twilio.contact,
   //   to: toTxt
-  // }) 
-  // .then(message => res.status(200)) 
-  // .done();
+  })
+  .then(message => res.status(200))
+  .done();
 });
 
 /*
@@ -37,14 +37,15 @@ router.post('/compliment/:number', function(req, res, next) {
 	const toTxt = req.params.number;
   const randomCompliment = nicejob();
   console.log(randomCompliment, toTxt)
-	// client.messages 
- //  .create({ 
- //  	body: `Amber says "${randomCompliment}" 🙃`,
- //    from: keys.twilio.contact,       
- //    to: toTxt
- //  }) 
- //  .then(message => res.status(200)) 
- //  .done();
+
+  client.messages
+  .create({
+  	body: `Amber says "${randomCompliment}" 🙃`,
+    from: keys.twilio.contact,
+    to: toTxt
+  })
+  .then(message => res.status(200))
+  .done();
 });
 
 module.exports = router;
