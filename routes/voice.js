@@ -6,9 +6,9 @@ const router        = express.Router();
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 // Voice Routes ======================================================
-console.log("helper", helpers);
+
 /* 
-  /voice
+  route: /voice
   incoming calls
 */
 router.post('/', (request, response) => {
@@ -33,7 +33,7 @@ router.post('/', (request, response) => {
 });
 
 /*
-  /voice/gather
+  route: /voice/gather
   decision making after a user dials a digit
 */
 router.post('/gather', (request, response) => {
@@ -72,7 +72,7 @@ router.post('/gather', (request, response) => {
 });
 
 /*
-  /voice/handle_transcribe
+  route: /voice/handle_transcribe
   after creating a voice recording
 */
 router.post('/handle_transcribe', (request, response) => {
