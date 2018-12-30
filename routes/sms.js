@@ -17,15 +17,16 @@ const client     = require('twilio')('ACa20365eb7b6017bd1e4b7f38cb0a437b', 'fe30
 router.get('/:schedule/:number', function(req, res, next) {
 	const toTxt = req.params.number;
 	const schedule = keys.personal.schedule;
+  console.log(schedule, toTxt)
 
-  client.messages 
-  .create({ 
-  	body: `Thank you for calling! Here is a link to Amber's schedule 📅: ${schedule}`,
-    from: keys.twilio.contact,       
-    to: toTxt
-  }) 
-  .then(message => res.status(200)) 
-  .done();
+  // client.messages 
+  // .create({ 
+  // 	body: `Thank you for calling! Here is a link to Amber's schedule 📅: ${schedule}`,
+  //   from: keys.twilio.contact,       
+  //   to: toTxt
+  // }) 
+  // .then(message => res.status(200)) 
+  // .done();
 });
 
 /*
@@ -33,17 +34,17 @@ router.get('/:schedule/:number', function(req, res, next) {
   recieve a random compliment through text
 */
 router.get('/:compliment/:number', function(req, res, next) {
-	const randomCompliment = nicejob();
 	const toTxt = req.params.number;
-
-	client.messages 
-  .create({ 
-  	body: `Amber says "${randomCompliment}" 🙃`,
-    from: keys.twilio.contact,       
-    to: toTxt
-  }) 
-  .then(message => res.status(200)) 
-  .done();
+  const randomCompliment = nicejob();
+  console.log(randomCompliment, toTxt)
+	// client.messages 
+ //  .create({ 
+ //  	body: `Amber says "${randomCompliment}" 🙃`,
+ //    from: keys.twilio.contact,       
+ //    to: toTxt
+ //  }) 
+ //  .then(message => res.status(200)) 
+ //  .done();
 });
 
 module.exports = router;
