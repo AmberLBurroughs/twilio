@@ -13,7 +13,6 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 */
 router.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
-  console.log(request.body);
   const twiml  = new VoiceResponse();
   const gather = twiml.gather({
     numDigits: 1,
@@ -41,6 +40,8 @@ router.post('/gather', (request, response) => {
   let callFrom = request.body.From;
   callFrom     = callFrom.replace(/[^0-9]/g, "");
 
+  const callID = request.body.CallSid;
+
   // Use the Twilio Node.js SDK to build an XML response
   const twiml  = new VoiceResponse();
 
@@ -54,10 +55,10 @@ router.post('/gather', (request, response) => {
         helpers.voiceHelpers.leaveVoiceMessage(twiml);
         break
       case '3':
-        helpers.voiceHelpers.getSMSSchedule(twiml, callFrom);
+        helpers.voiceHelpers.getSMSSchedule(twiml, callFrom, callID);
         break
       case '4':
-        helpers.voiceHelpers.getSMSCompliment(twiml, callFrom);
+        helpers.voiceHelpers.getSMSCompliment(twiml, callFrom, callID);
         break
       default:
         twiml.say({ voice: 'woman'}, "Sorry, I don't understand that choice.").pause();

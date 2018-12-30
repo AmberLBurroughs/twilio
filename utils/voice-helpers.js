@@ -7,18 +7,18 @@ exports.voiceHelpers = {
 	},
 	leaveVoiceMessage: (twiml) => {
 	},
-	getSMSSchedule: (twiml, callFrom) => {
+	getSMSSchedule: (twiml, callFrom, callID) => {
 		twiml.say({ voice: 'woman'},
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
-  	twiml.redirect(`/sms/schedule/${callFrom}`);
+  	twiml.redirect(`/sms/schedule/${callFrom}/${callID}`);
   	twiml.hangup();
 	},
-	getSMSCompliment: (twiml, callFrom) => {
+	getSMSCompliment: (twiml, callFrom, callID) => {
 		twiml.say({ voice: 'woman'},
     'A random compliment will be messaged to you momentarily.' +
     'Goodbye!');
-	  twiml.redirect(`/sms/compliment/${callFrom}`);
+	  twiml.redirect(`/sms/compliment/${callFrom}/${callID}`);
 	  twiml.hangup();
 	}
 }
