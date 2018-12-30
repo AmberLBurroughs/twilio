@@ -14,7 +14,7 @@ const client     = require('twilio')('ACa20365eb7b6017bd1e4b7f38cb0a437b', 'fe30
   /sms/schedule/number
   recieve a link to Amber's schedule through text
 */
-router.get('/schedule/:number', function(req, res, next) {
+router.post('/schedule/:number', function(req, res, next) {
 	const toTxt = req.params.number;
 	const schedule = keys.personal.schedule;
   console.log(schedule, toTxt)
@@ -33,7 +33,7 @@ router.get('/schedule/:number', function(req, res, next) {
   /sms/compliment/number
   recieve a random compliment through text
 */
-router.get('/compliment/:number', function(req, res, next) {
+router.post('/compliment/:number', function(req, res, next) {
 	const toTxt = req.params.number;
   const randomCompliment = nicejob();
   console.log(randomCompliment, toTxt)
