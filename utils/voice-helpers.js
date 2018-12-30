@@ -1,16 +1,17 @@
 exports.voiceHelpers = {
 
   speakWithAmber: (twiml, keys) =>{
-    twiml.say({ voice: 'woman'}, 'You have selected to chat with Amber! One moment while I patch you through.');
+    twiml.say({ voice: 'woman'}, 'You have selected to chat with Amber! One moment while I patch you through');
     twiml.dial(keys.personal.contact);
   },
 
   leaveVoiceMessage: (twiml) => {
-    twiml.say({ voice: 'woman'},'Please leave a message at the beep.\nPress the star key when finished.');
+    twiml.say({ voice: 'woman'},'Please leave a message at the beep.\nPress the star key when finished');
     twiml.record({
       action: '/voice/handle_recording',
       finishOnKey: '*'
     });
+    twiml.say({ voice: 'woman'}, 'I did not receive a recording');
   },
 
   getSMSCalendar: (twiml, callFrom, callID) => {
