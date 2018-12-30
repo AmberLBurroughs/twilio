@@ -17,7 +17,6 @@ const client     = require('twilio')('ACa20365eb7b6017bd1e4b7f38cb0a437b', 'fe30
 router.post('/schedule/:number', function(req, res, next) {
 	const toTxt = req.params.number;
 	const schedule = keys.personal.schedule;
-  console.log(schedule, toTxt)
 
   client.messages
   .create({
@@ -36,7 +35,6 @@ router.post('/schedule/:number', function(req, res, next) {
 router.post('/compliment/:number', function(req, res, next) {
 	const toTxt = req.params.number;
   const randomCompliment = nicejob();
-  console.log(randomCompliment, toTxt)
 
   client.messages
   .create({

@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 exports.voiceHelpers = {
 	speakWithAmber: (twiml, keys) =>{
 		console.log('test speakWithAmber')
@@ -13,16 +11,14 @@ exports.voiceHelpers = {
 		twiml.say({ voice: 'woman'},
     'Amber\'s schedule will be messaged to you momentarily.' +
     'Goodbye!' );
-  	axios.post(`/sms/schedule/${callFrom}`)
-  	.then(response => twiml.hangup())
-	  .catch(error => console.log(error));
+  	twiml.redirect(`/sms/schedule/${callFrom}`);
+  	twiml.hangup();
 	},
 	getSMSCompliment: (twiml, callFrom) => {
 		twiml.say({ voice: 'woman'},
     'A random compliment will be messaged to you momentarily.' +
     'Goodbye!');
-	  axios.post(`/sms/compliment/${callFrom}`)
-	  .then(response => twiml.hangup())
-	  .catch(error => console.log(error));
+	  twiml.redirect(`/sms/compliment/${callFrom}`);
+	  twiml.hangup();
 	}
 }
