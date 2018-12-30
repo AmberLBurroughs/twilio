@@ -10,14 +10,15 @@ const client     = require('twilio')(accountSid, authToken);
 // SMS Routes ======================================================
 
 /*
-  /sms/schedule/number
-  recieve a link to Amber's schedule through text
+  route: /sms/calendar/number
+  recieve a link to Amber's calendar through text
 */
-router.post('/schedule/:number/:id', (req, res, next) => {
+router.post('/calendar/:number/:id', (req, res, next) => {
   const toTxt       = req.params.number;
   const currentCall = req.params.id;
-  const schedule    = keys.personal.schedule;
+  const calendar    = keys.personal.calendar;
 
+  // end user's call after requesting calendar
   client.calls(currentCall)
   .update({
     status: 'completed',
@@ -27,7 +28,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
 
   client.messages
   .create({
-    body: `Thank you for calling! Here is a link to Amber's calendar 📅: ${schedule}`,
+    body: `Thank you for calling! Here is a link to Amber's calendar 📅: ${calendar}`,
      from: keys.twilio.contact,
      to: toTxt
   })
@@ -38,7 +39,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
 });
 
 /*
-  /sms/compliment/number
+  route: /sms/compliment/number
   recieve a random compliment through text
 */
 router.post('/compliment/:number/:id', (req, res, next) => {
@@ -46,11 +47,12 @@ router.post('/compliment/:number/:id', (req, res, next) => {
   const currentCall      = req.params.id;
   const randomCompliment = nicejob();
 
+  // end user's call after requesting a compliment
   client.calls(currentCall)
   .update({
     status: 'completed',
   })
-  .then(call=>console.log(call.direction))
+  .then(call=>res.status(200))
   .catch(err=>console.log(err));
 
   client.messages

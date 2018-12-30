@@ -48,18 +48,23 @@ router.post('/gather', (request, response) => {
   // If the user entered digits, process their request
   if (request.body.Digits) {
     switch (request.body.Digits) {
+      // press '1' to speak to Amber
       case '1':
         helpers.voiceHelpers.speakWithAmber(twiml, keys);
         break
+      // press '2' to leave a voice mail
       case '2':
         helpers.voiceHelpers.leaveVoiceMessage(twiml);
         break
+      // press '3' to get SMS of calendar
       case '3':
-        helpers.voiceHelpers.getSMSSchedule(twiml, callFrom, callID);
+        helpers.voiceHelpers.getSMSCalendar(twiml, callFrom, callID);
         break
+      // press '4' to get SMS of a random compliment
       case '4':
         helpers.voiceHelpers.getSMSCompliment(twiml, callFrom, callID);
         break
+      // error handle for any other (or no) key press
       default:
         twiml.say({ voice: 'woman'}, "Sorry, I don't understand that choice.").pause();
         twiml.redirect('/voice');
@@ -78,14 +83,14 @@ router.post('/gather', (request, response) => {
 });
 
 /*
-  route: /voice/handle_transcribe
-  after creating a voice recording
+  route: /voice/handle_recording
+  end user's call after creating voice recording
+  * recording is accessible through twilio console
 */
-router.post('/handle_transcribe', (request, response) => {
+router.post('/handle_recording', (request, response) => {
   const twiml = new VoiceResponse();
-  // const recordingUrl = request.body.RecordingUrl;
-  // twiml.play(recordingUrl);
   twiml.say({ voice: 'woman'},'Thank you, Goodbye.');
+
   response.type('text/xml');
   response.send(twiml.toString());
 });
