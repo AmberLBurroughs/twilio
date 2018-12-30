@@ -14,9 +14,9 @@ const client     = require('twilio')(accountSid, authToken);
   recieve a link to Amber's schedule through text
 */
 router.post('/schedule/:number/:id', (req, res, next) => {
-	const toTxt       = req.params.number;
+  const toTxt       = req.params.number;
   const currentCall = req.params.id;
-	const schedule    = keys.personal.schedule;
+  const schedule    = keys.personal.schedule;
 
   client.calls(currentCall)
   .update({
@@ -27,7 +27,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
 
   client.messages
   .create({
-   	body: `Thank you for calling! Here is a link to Amber's calendar 📅: ${schedule}`,
+    body: `Thank you for calling! Here is a link to Amber's calendar 📅: ${schedule}`,
      from: keys.twilio.contact,
      to: toTxt
   })
@@ -42,7 +42,7 @@ router.post('/schedule/:number/:id', (req, res, next) => {
   recieve a random compliment through text
 */
 router.post('/compliment/:number/:id', (req, res, next) => {
-	const toTxt            = req.params.number;
+  const toTxt            = req.params.number;
   const currentCall      = req.params.id;
   const randomCompliment = nicejob();
 
@@ -55,7 +55,7 @@ router.post('/compliment/:number/:id', (req, res, next) => {
 
   client.messages
   .create({
-  	body: `Amber says "${randomCompliment}" 🙃`,
+    body: `Amber says "${randomCompliment}" 🙃`,
     from: keys.twilio.contact,
     to: toTxt
   })
