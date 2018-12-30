@@ -7,12 +7,13 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 // Voice Routes ======================================================
 
-/* 
+/*
   route: /voice
   incoming calls
 */
 router.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
+  console.log(request.body);
   const twiml  = new VoiceResponse();
   const gather = twiml.gather({
     numDigits: 1,
@@ -42,7 +43,7 @@ router.post('/gather', (request, response) => {
 
   // Use the Twilio Node.js SDK to build an XML response
   const twiml  = new VoiceResponse();
-  
+
   // If the user entered digits, process their request
   if (request.body.Digits) {
     switch (request.body.Digits) {
@@ -63,7 +64,7 @@ router.post('/gather', (request, response) => {
         twiml.redirect('/voice');
         break;
     }
-  } 
+  }
   else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
