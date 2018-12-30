@@ -7,7 +7,7 @@ const keys    = require("../utils/keys.js");
 
 const accountSid = keys.twilio.accountSid;
 const authToken  = keys.twilio.authToken;
-const client     = require('twilio')('ACa20365eb7b6017bd1e4b7f38cb0a437b', 'fe30b9b49c07a75a2818473469ab821c');
+const client     = require('twilio')(accountSid, authToken);
 
 // SMS Routes ======================================================
 
