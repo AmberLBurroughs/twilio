@@ -18,30 +18,27 @@ What things you need installed before running this application.
 * [NODE](https://nodejs.org/en/download/)
 * [NPM](https://docs.npmjs.com/cli/install)
 
+Create a `.env` file for your twilio keys and personal information
+```
+# Twilio keys
+
+TWILIO_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+TWILIO_TOKEN=your_auth_token
+TWILIO_NUM=15555555555
+
+# Personal Data
+
+AMBER_CONTACT=10000000000
+AMBER_SCHEDULE=https://somecalendarlinkhere.com
+```
+
+*If use Heroku for deploying set environmental variables*
+`heroku config:set {TWILIO_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX} TWILIO_TOKEN=your_auth_token} {TWILIO_NUM=15555555555} {AMBER_CONTACT=10000000000} {AMBER_SCHEDULE=https://somecalendarlinkhere.com}`
+
 🌟 You will also need to have a Twilio account set up.
 * [Twilio](https://www.twilio.com/try-twilio)
 
-<!-- ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system -->
 
 ## 🛠️ Built With
 * [Node](https://nodejs.org/en/docs/) - open source server environment
