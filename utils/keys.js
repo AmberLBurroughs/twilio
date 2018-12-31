@@ -6,5 +6,5 @@ exports.twilio = {
 
 exports.personal = {
   contact: process.env.AMBER_CONTACT,
-  schedule: process.env.AMBER_SCHEDULE
+  calendar: process.env.AMBER_SCHEDULE
 };
