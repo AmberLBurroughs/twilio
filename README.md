@@ -37,7 +37,7 @@ AMBER_SCHEDULE=https://somecalendarlinkhere.com
 `heroku config:set {TWILIO_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX} {TWILIO_TOKEN=your_auth_token} {TWILIO_NUM=15555555555} {AMBER_CONTACT=10000000000} {AMBER_SCHEDULE=https://somecalendarlinkhere.com}`
 
 🌟 You will also need to have a Twilio account set up.
-* [Twilio](https://www.twilio.com/try-twilio)
+ [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
 
 
 
