@@ -32,7 +32,7 @@ AMBER_CONTACT=10000000000
 AMBER_SCHEDULE=https://somecalendarlinkhere.com
 ```
 
-*If using Heroku for deploying set environmental variables*
+* *If using Heroku for deploying set environmental variables*
 
 `heroku config:set {TWILIO_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX} {TWILIO_TOKEN=your_auth_token} {TWILIO_NUM=15555555555} {AMBER_CONTACT=10000000000} {AMBER_SCHEDULE=https://somecalendarlinkhere.com}`
 
